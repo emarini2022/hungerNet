@@ -23,6 +23,11 @@ public class RestaurantDTOBuilder implements Builder<RestaurantDTO> {
         return this;
     }
 
+    public RestaurantDTOBuilder withName (String name){
+        restaurantDTO.setName(name);
+        return this;
+    }
+
     @Override
     public RestaurantDTO build() {
         return restaurantDTO;

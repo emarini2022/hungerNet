@@ -9,4 +9,6 @@ public interface MenuService {
     MenuDTO createMenu (MenuDTO menuDto);
 
     List<MenuDTO> getAllMenu ();
+
+    MenuDTO makeOrder (MenuDTO orderDTO);
 }

@@ -23,6 +23,11 @@ public class RestaurantBuilder implements Builder<Restaurant> {
         return this;
     }
 
+    public RestaurantBuilder withName (String name){
+        restaurant.setName(name);
+        return this;
+    }
+
 
     @Override
     public Restaurant build() {
