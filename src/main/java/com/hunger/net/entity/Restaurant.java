@@ -4,6 +4,7 @@ package com.hunger.net.entity;
 import com.hunger.net.enums.OrderStatusEnum;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -12,7 +13,6 @@ public class Restaurant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column (name = "id", nullable = false, unique = true)
     private Integer id;
 
     @Column
@@ -22,17 +22,17 @@ public class Restaurant {
     private String address;
 
     @Enumerated(value = EnumType.STRING)
-    @Column(name = "order status", nullable = false)
+    @Column(name = "order_status", nullable = false)
     private OrderStatusEnum orderStatus;
 
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(targetEntity = Menu.class,fetch = FetchType.EAGER)
     @JoinTable(
             name = "restaurant_menu",
             joinColumns = @JoinColumn(name = "restaurant_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "menu_id", referencedColumnName = "id")
     )
-    private Set<Restaurant> menu_id;
+    private Set<Restaurant> menu_list;
 
 
     public Integer getId() {
@@ -65,6 +65,13 @@ public class Restaurant {
 
     public void setOrderStatus(OrderStatusEnum orderStatus) {
         this.orderStatus = orderStatus;
+    }
+
+    public Set<Restaurant> getMenu() {
+        if (menu_list == null) {
+            menu_list = new HashSet<>();
+        }
+        return menu_list;
     }
 
 }
