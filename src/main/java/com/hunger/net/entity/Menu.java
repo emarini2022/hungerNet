@@ -1,13 +1,15 @@
 package com.hunger.net.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
-@Table
+@Table (name = "menu")
 public class Menu {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false, unique = true)
     private Integer id;
 
     @Column
@@ -15,6 +17,9 @@ public class Menu {
 
     @Column
     private String content;
+
+    @ManyToMany(mappedBy = menu_id)
+    private Set<Menu> menus ;
 
 
 
