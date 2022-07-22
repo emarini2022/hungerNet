@@ -1,31 +1,15 @@
-package com.hunger.net.entity;
+package com.hunger.net.dto;
 
 import com.hunger.net.enums.RoleEnum;
 
-import javax.persistence.*;
-
-@Entity
-@Table
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UserDTO {
     private Integer id;
-
-    @Column
     private String name;
-
-    @Column
     private String surname;
-
-    @Column
     private String phoneNumber;
-
-    @Column
     private String email;
-
-    @Enumerated(value = EnumType.STRING)
-    @Column (name = "user_role", nullable = false)
     private RoleEnum userRole;
+
 
     public Integer getId() {
         return id;

@@ -16,8 +16,8 @@ public class Menu {
     @Column
     private String content;
 
-
-
+    @Column
+    private Double price;
 
 
     public Integer getId() {
@@ -44,5 +44,11 @@ public class Menu {
         this.content = content;
     }
 
+    public Double getPrice() {
+        return price;
+    }
 
+    public void setPrice(Double price) {
+        this.price = price;
+    }
 }

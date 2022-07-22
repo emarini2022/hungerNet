@@ -1,6 +1,6 @@
 package com.hunger.net.dto;
 
-public class MenuDto {
+public class MenuDTO {
 
     private Integer id;
     private String title;

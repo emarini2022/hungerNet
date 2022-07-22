@@ -1,12 +1,12 @@
 package com.hunger.net.service;
 
-import com.hunger.net.dto.MenuDto;
+import com.hunger.net.dto.MenuDTO;
 
 import java.util.List;
 
 public interface MenuService {
 
-    MenuDto createMenu (MenuDto menuDto);
+    MenuDTO createMenu (MenuDTO menuDto);
 
-    List<MenuDto> getAllMenu ();
+    List<MenuDTO> getAllMenu ();
 }

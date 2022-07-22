@@ -1,6 +1,6 @@
 package com.hunger.net.controller;
 
-import com.hunger.net.dto.MenuDto;
+import com.hunger.net.dto.MenuDTO;
 import com.hunger.net.service.MenuService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +21,7 @@ public class MenuController {
     // create a menu
 
     @PostMapping
-    public ResponseEntity<MenuDto> createMenu(@RequestBody MenuDto menuDto){
+    public ResponseEntity<MenuDTO> createMenu(@RequestBody MenuDTO menuDto){
 
         return new ResponseEntity<>(menuService.createMenu(menuDto), HttpStatus.CREATED);
     }
@@ -29,7 +29,7 @@ public class MenuController {
     // get all menus
 
     @GetMapping
-    public List <MenuDto> getAllMenus (){
+    public List <MenuDTO> getAllMenus (){
 
       return menuService.getAllMenu();
     }
