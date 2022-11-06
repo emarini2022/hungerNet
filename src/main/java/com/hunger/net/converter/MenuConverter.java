@@ -3,12 +3,12 @@ package com.hunger.net.converter;
 import com.hunger.net.builder.MenuBuilder;
 import com.hunger.net.builder.MenuDTOBuilder;
 import com.hunger.net.dto.MenuDTO;
-import com.hunger.net.entity.Menu;
+import com.hunger.net.io.entity.MenuEntity;
 
-public class MenuConverter implements AbstractConverter <Menu, MenuDTO> {
+public class MenuConverter implements AbstractConverter <MenuEntity, MenuDTO> {
 
     @Override
-    public Menu toEntity (MenuDTO menuDTO) {
+    public MenuEntity toEntity (MenuDTO menuDTO) {
         return new MenuBuilder()
                 .withId(menuDTO.getId())
                 .withContent(menuDTO.getContent())
@@ -18,12 +18,12 @@ public class MenuConverter implements AbstractConverter <Menu, MenuDTO> {
     }
 
     @Override
-    public MenuDTO toDto (Menu menu) {
+    public MenuDTO toDto (MenuEntity menuEntity) {
         return new MenuDTOBuilder()
-                .withId(menu.getId())
-                .withContent(menu.getContent())
-                .withPrice(menu.getPrice())
-                .withTitle(menu.getTitle())
+                .withId(menuEntity.getId())
+                .withContent(menuEntity.getContent())
+                .withPrice(menuEntity.getPrice())
+                .withTitle(menuEntity.getTitle())
                 .build();
     }
 }

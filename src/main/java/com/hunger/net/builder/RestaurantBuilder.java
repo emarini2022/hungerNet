@@ -1,12 +1,12 @@
 package com.hunger.net.builder;
 
-import com.hunger.net.entity.Restaurant;
+import com.hunger.net.io.entity.RestaurantEntity;
 import com.hunger.net.enums.OrderStatusEnum;
 import com.sun.istack.Builder;
 
-public class RestaurantBuilder implements Builder<Restaurant> {
+public class RestaurantBuilder implements Builder<RestaurantEntity> {
 
-    private Restaurant restaurant = new Restaurant();
+    private RestaurantEntity restaurant = new RestaurantEntity();
 
     public RestaurantBuilder withId (Integer id){
         restaurant.setId(id);
@@ -30,7 +30,7 @@ public class RestaurantBuilder implements Builder<Restaurant> {
 
 
     @Override
-    public Restaurant build() {
+    public RestaurantEntity build() {
         return restaurant;
     }
 }

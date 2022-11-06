@@ -1,4 +1,4 @@
-package com.hunger.net.entity;
+package com.hunger.net.io.entity;
 
 import com.hunger.net.enums.RoleEnum;
 
@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table
-public class User {
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

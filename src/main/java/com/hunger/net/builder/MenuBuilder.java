@@ -1,31 +1,31 @@
 package com.hunger.net.builder;
 
-import com.hunger.net.entity.Menu;
+import com.hunger.net.io.entity.MenuEntity;
 import com.sun.istack.Builder;
 
-public class MenuBuilder implements Builder<Menu> {
+public class MenuBuilder implements Builder<MenuEntity> {
 
-    private Menu menu = new Menu();
+    private MenuEntity menuEntity = new MenuEntity();
 
     public MenuBuilder withId (Integer id){
-        menu.setId(id);
+        menuEntity.setId(id);
         return this;
     }
     public MenuBuilder withTitle (String title){
-        menu.setTitle(title);
+        menuEntity.setTitle(title);
         return this;
     }
     public MenuBuilder withContent (String content){
-        menu.setContent(content);
+        menuEntity.setContent(content);
         return this;
     }
     public MenuBuilder withPrice (Double price){
-        menu.setPrice(price);
+        menuEntity.setPrice(price);
         return this;
     }
 
     @Override
-    public Menu build() {
-        return menu;
+    public MenuEntity build() {
+        return menuEntity;
     }
 }

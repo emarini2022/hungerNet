@@ -1,14 +1,16 @@
 package com.hunger.net.service.impl;
 
-import com.hunger.net.converter.AbstractConverter;
-import com.hunger.net.converter.MenuConverter;
+import antlr.Utils;
+
 import com.hunger.net.dto.MenuDTO;
-import com.hunger.net.entity.Menu;
-import com.hunger.net.repository.MenuRepository;
+import com.hunger.net.io.entity.MenuEntity;
+import com.hunger.net.io.repository.MenuRepository;
 import com.hunger.net.service.MenuService;
-import org.hibernate.boot.model.convert.internal.AbstractConverterDescriptor;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,34 +18,66 @@ import java.util.stream.Collectors;
 @Service
 public class MenuServiceImpl implements MenuService {
 
-    private final MenuRepository menuRepository;
-    private final AbstractConverter<Menu, MenuDTO> menuConverter;
+    @Autowired
+    MenuRepository menuRepository;
 
-
-    public MenuServiceImpl(MenuRepository menuRepository) {
-        this.menuRepository = menuRepository;
-        this.menuConverter = new MenuConverter();
-    }
 
     @Override
     public MenuDTO createMenu(MenuDTO menuDto) {
 
-        //convert DTO to Entity
-        Menu menu = new Menu();
+        ModelMapper modelMapper=new ModelMapper();
 
-        Menu newItem = menuRepository.save(menu);
+        MenuEntity menuEntity = modelMapper.map(menuDto, MenuEntity.class);
+        MenuEntity storeMenu = menuRepository.save(menuEntity);
 
-        //convert Entity to DTO
-        MenuDTO menuUpdated = menuConverter.toDto(newItem);
+        MenuDTO menuDTO = new MenuDTO();
 
-        return menuUpdated;
+        menuDTO=modelMapper.map(storeMenu, MenuDTO.class);
+
+        return menuDTO;
+    }
+
+    @Override
+    public MenuDTO getMenuById(String menuID) {
+        MenuDTO returnValue = new MenuDTO();
+
+        ModelMapper modelMapper = new ModelMapper();
+
+        MenuEntity menuEntity = menuRepository.findByMenuID(menuID);
+
+        returnValue=modelMapper.map(menuEntity, MenuDTO.class);
+
+        return returnValue;
+    }
+
+    @Override
+    public MenuDTO updateMenuDetails(String menuID, MenuDTO menuDTO) {
+        return null;
+    }
+
+    @Override
+    public void deleteMenu(String menuId) {
+
+        MenuEntity menuEntity = new MenuEntity();
+
+        menuRepository.findByMenuID(menuId);
+
+        menuRepository.delete(menuEntity);
     }
 
 
     @Override
     public List<MenuDTO> getAllMenu() {
-        List <Menu> menus = menuRepository.findAll();
-        return menus.stream().map(menuConverter::toDto).collect(Collectors.toList());
+
+        List <MenuDTO> returnValue = new ArrayList<>();
+
+        Iterable <MenuEntity> iterableObjects=menuRepository.findAll();
+
+        for (MenuEntity menuEntity : iterableObjects){
+            MenuDTO menuDTO=new MenuDTO();
+            returnValue.add(menuDTO);
+        }
+        return returnValue;
     }
 
     @Override

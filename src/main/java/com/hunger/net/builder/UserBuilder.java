@@ -1,13 +1,13 @@
 package com.hunger.net.builder;
 
-import com.hunger.net.entity.User;
+import com.hunger.net.io.entity.UserEntity;
 import com.hunger.net.enums.RoleEnum;
 import com.sun.istack.Builder;
 
-public class UserBuilder implements Builder <User> {
+public class UserBuilder implements Builder <UserEntity> {
 
 
-    private User user = new User();
+    private UserEntity user = new UserEntity();
 
     public UserBuilder withId (Integer id){
         user.setId(id);
@@ -42,7 +42,7 @@ public class UserBuilder implements Builder <User> {
 
 
     @Override
-    public User build() {
+    public UserEntity build() {
         return user;
     }
 }

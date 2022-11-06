@@ -3,13 +3,13 @@ package com.hunger.net.converter;
 import com.hunger.net.builder.UserBuilder;
 import com.hunger.net.builder.UserDTOBuilder;
 import com.hunger.net.dto.UserDTO;
-import com.hunger.net.entity.User;
+import com.hunger.net.io.entity.UserEntity;
 
-public class UserConverter implements AbstractConverter<User, UserDTO> {
+public class UserConverter implements AbstractConverter<UserEntity, UserDTO> {
 
 
     @Override
-    public User toEntity(UserDTO userDTO) {
+    public UserEntity toEntity(UserDTO userDTO) {
         return new UserBuilder()
                 .withId(userDTO.getId())
                 .withName(userDTO.getName())
@@ -21,7 +21,7 @@ public class UserConverter implements AbstractConverter<User, UserDTO> {
     }
 
     @Override
-    public UserDTO toDto(User user) {
+    public UserDTO toDto(UserEntity user) {
         return new UserDTOBuilder()
                 .withId(user.getId())
                 .withName(user.getName())

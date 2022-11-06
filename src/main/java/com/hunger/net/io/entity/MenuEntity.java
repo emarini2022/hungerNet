@@ -1,10 +1,10 @@
-package com.hunger.net.entity;
+package com.hunger.net.io.entity;
 
 import javax.persistence.*;
 
 @Entity
 @Table (name = "menu")
-public class Menu {
+public class MenuEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,9 +20,7 @@ public class Menu {
     private Double price;
 
 
-    public Integer getId() {
-        return id;
-    }
+    public Integer getId() {return id;}
 
     public void setId(Integer id) {
         this.id = id;

@@ -1,4 +1,4 @@
-package com.hunger.net.entity;
+package com.hunger.net.io.entity;
 
 
 import com.hunger.net.enums.OrderStatusEnum;
@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Entity
 @Table (name = "restaurant")
-public class Restaurant {
+public class RestaurantEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,13 +26,13 @@ public class Restaurant {
     private OrderStatusEnum orderStatus;
 
 
-    @ManyToMany(targetEntity = Menu.class,fetch = FetchType.EAGER)
+    @ManyToMany(targetEntity = MenuEntity.class,fetch = FetchType.EAGER)
     @JoinTable(
             name = "restaurant_menu",
             joinColumns = @JoinColumn(name = "restaurant_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "menu_id", referencedColumnName = "id")
     )
-    private Set<Restaurant> menu_list;
+    private Set<RestaurantEntity> menu_list;
 
 
     public Integer getId() {
@@ -67,7 +67,7 @@ public class Restaurant {
         this.orderStatus = orderStatus;
     }
 
-    public Set<Restaurant> getMenu() {
+    public Set<RestaurantEntity> getMenu() {
         if (menu_list == null) {
             menu_list = new HashSet<>();
         }
